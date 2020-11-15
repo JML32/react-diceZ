@@ -1,0 +1,45 @@
+.App {
+  font-family: "Open Sans", sans-serif;
+  text-align: center;
+  border: 1px solid grey;
+  border-radius: 4px;
+  width: 90%;
+  margin: 0 5%;
+  margin-top: 50px;
+}
+h1 {
+  font-size: 18px;
+  text-decoration: underline;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin: 0 10px;
+  margin-bottom: 35px;
+
+}
+button:focus {outline:0;}
+.button {
+  background-color: rgba(27, 136, 27, .85);
+  border: 2px solid black;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: rgba(27,136,27);
+}
+
+.dice-image {
+  margin: 10px;
+  width: 95px;
+}
+
+.sum {
+  font-size: 48px;
+}
