@@ -2,9 +2,9 @@
   "name": "dice",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/zoelamlcm/react-diceZ.git",
+  "homepage": "https://zoelamlcm.github.io/react-diceZ/",
   "dependencies": {
-    "gh-pages": "^1.2.0",
+    "gh-pages": "^3.1.0",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-scripts": "1.1.5"

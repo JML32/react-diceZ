@@ -20,7 +20,7 @@ class App extends Component {
   		throwScore: 0,
   		turnScore: 0,
   		bankScore: 0,
-  		diceToReduce: 0,
+		diceToReduce: 0,
   		dice: [1,1,1,1,1,1,1,1,1,1]
   	},
   	player2: {
@@ -36,7 +36,7 @@ class App extends Component {
   	maxScore: 200,
   	winner: '',
   	newTurn: 'false',
-  	totalDize: 10    
+  	totalDice: 10    
   };
   
   // called when clicking the roll dice button
@@ -58,7 +58,7 @@ class App extends Component {
 		  		player1.diceToReduce = 0;       // reset to zero 
 		  		player1.turnScore = 0;
 		  		
-		  		player1.dice.splice(0, 10);
+		  		player1.dice.splice(0, this.state.totalDice);
 		  		
 		  		console.log("resetting1...");	
 		  		console.log("player1.dice..." + player1.dice);		  		           
@@ -70,7 +70,7 @@ class App extends Component {
 		  		let player2 = Object.assign({}, prevState.player2);  // creating copy of state variable player1
 		  		player2.diceToReduce = 0;       // reset to zero 
 		  		player2.turnScore = 0;
-		  		player2.dice.splice(0, 10);
+		  		player2.dice.splice(0, this.state.totalDice);
 		  		console.log("resetting2...");	
 		  		console.log("player2.dice..." + player2.dice);	  		           
 		  		return { player2 }; 
@@ -121,7 +121,7 @@ class App extends Component {
 		console.log("this.state.player1.diceToReduce:  " + this.state.player1.diceToReduce);
 		if( bankScore >= this.state.maxScore ){  // if there is winner
 			this.setState({winner: 'Player1'});
-		}else if((this.state.player1.diceToReduce + tempDiceToReduce) === 10){  // or there is NO more dice, change player's turn
+		}else if((this.state.player1.diceToReduce + tempDiceToReduce) === this.state.totalDice){  // or there is NO more dice, change player's turn
 			
       			this.setState({playerTurn: 'player2'});
       			console.log("swap to player2:  ");
@@ -165,7 +165,7 @@ class App extends Component {
 		});
       		if( bankScore >= this.state.maxScore ){ //if there is winner
 			this.setState({winner: 'Player2'});
-		}else if((this.state.player2.diceToReduce + tempDiceToReduce) === 10){  //or there is NO more dice
+		}else if((this.state.player2.diceToReduce + tempDiceToReduce) === this.state.totalDice){  //or there is NO more dice
 			
       			this.setState({playerTurn: 'player1'});
       			console.log("swap to player1:  ");
@@ -184,7 +184,7 @@ class App extends Component {
   		<div className="App">
   			<h1>Dice Roll: Be the first to score {this.state.maxScore} points</h1>
 		        <div className="buttons">          
-		          {[this.state.totalDize].map(number => { 
+		          {[this.state.totalDice].map(number => { 
 		            let text = number === 1 ? "die" : "dice";
 		            return (
 		              <button
