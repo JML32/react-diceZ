@@ -18,7 +18,7 @@ class App extends Component {
   		id: 1,
   		name: 'Player1',
   		throwScore: 0,
-  		turanScore: 0,
+  		turnScore: 0,
   		bankScore: 0,
   		diceToReduce: 0,
   		dice: []
