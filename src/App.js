@@ -18,10 +18,10 @@ class App extends Component {
   		id: 1,
   		name: 'Player1',
   		throwScore: 0,
-  		turnScore: 0,
+  		turanScore: 0,
   		bankScore: 0,
-		diceToReduce: 0,
-  		dice: [1,1,1,1,1,1,1,1,1,1]
+  		diceToReduce: 0,
+  		dice: []
   	},
   	player2: {
   		id: 2,
@@ -30,7 +30,7 @@ class App extends Component {
   		turnScore: 0,
   		bankScore: 0,
   		diceToReduce: 0,
-  		dice: [1,1,1,1,1,1,1,1,1,1]
+  		dice: []
   	},
   	playerTurn: 'player1',
   	maxScore: 200,
@@ -185,7 +185,7 @@ class App extends Component {
   			<h1>Dice Roll: Be the first to score {this.state.maxScore} points</h1>
 		        <div className="buttons">          
 		          {[this.state.totalDice].map(number => { 
-		            let text = number === 1 ? "die" : "dice";
+		            number === 1 ? "die" : "dice";
 		            return (
 		              <button
 		                key={number}
