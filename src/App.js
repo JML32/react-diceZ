@@ -20,7 +20,8 @@ class App extends Component {
   		throwScore: 0,
   		turnScore: 0,
   		bankScore: 0,
-  		diceToReduce: 0,
+		diceToReduce: 0,
+		diceleft: 10 ,
   		dice: []
   	},
   	player2: {
@@ -29,14 +30,16 @@ class App extends Component {
   		throwScore: 0,
   		turnScore: 0,
   		bankScore: 0,
-  		diceToReduce: 0,
+		diceToReduce: 0,
+		diceleft: 10 ,
   		dice: []
   	},
   	playerTurn: 'player1',
   	maxScore: 200,
   	winner: '',
   	newTurn: 'false',
-  	totalDice: 10    
+	totalDice: 10 
+	  
   };
   
   // called when clicking the roll dice button
@@ -83,7 +86,9 @@ class App extends Component {
   	console.log("tempPlayerTurn:  " + tempPlayerTurn);
   	if(tempPlayerTurn === 'player1'){
   		console.log("player:  " + tempPlayerTurn);
-  		numberOfDice = numberOfDice - this.state.player1.diceToReduce;
+		numberOfDice = numberOfDice - this.state.player1.diceToReduce;
+		this.state.player1.diceLeft = numberOfDice;
+		console.log("Player1>>>>>> diceLeft:  " + this.state.player1.diceLeft);
   		console.log("numberOfDice:  " + numberOfDice);
   		// note that throw score will be reset to zero for every dice rolling
   		turnScore = this.state.player1.turnScore;
@@ -130,7 +135,9 @@ class App extends Component {
       		
   	}else{
   		console.log("player:  " + tempPlayerTurn);
-  		numberOfDice = numberOfDice - this.state.player2.diceToReduce;
+		  numberOfDice = numberOfDice - this.state.player2.diceToReduce;
+		  this.state.player2.diceLeft = numberOfDice;
+		  console.log("Player2 >>>>> diceLeft:  " + this.state.player2.diceLeft);
   		console.log("numberOfDice:  " + numberOfDice);
   		// note that throw score will be reset to zero for every dice rolling
   		turnScore = this.state.player2.turnScore;
@@ -181,8 +188,10 @@ class App extends Component {
   	console.log("playerTurn:  " + this.state.playerTurn);
   	
   	return(
+
   		<div className="App">
-  			<h1>Dice Roll: Be the first to score {this.state.maxScore} points</h1>
+  			<h1>10 Dices Rolling Game ! Who is the first to score {this.state.maxScore} points ?</h1>
+			  <Status winner={ this.state.winner }  playerTurn={ this.state.playerTurn } />
 		        <div className="buttons">          
 		          {[this.state.totalDice].map(number => { 
 		            number === 1 ? "die" : "dice";
@@ -192,20 +201,31 @@ class App extends Component {
 		                onClick={() => this.diceRoll(number)}
 		                className="button"
 		              >
-		                Click to roll with max. {number} x dice
+		                {this.state.playerTurn} : Click to Roll 
 		              </button>
 		            );
 		            		          
-		          })}		          
+		          })}
+       
 		        </div>	
-		        Player1: Throw Score: {this.state.player1.throwScore} Turn Score: {this.state.player1.turnScore} Bank Score: {this.state.player1.bankScore}<br/>	        
+		        <h1>Rolling Result : Player1 rolled {this.state.player1.diceLeft} dice(s),
+		             this roll's score is <span className="sum">{this.state.player1.throwScore}</span> /{" "}{this.state.player1.diceLeft * 6}
+					</h1>
+				<br/>Turn Score: {this.state.player1.turnScore} 
+				<br/>Total Score: {this.state.player1.bankScore}/{this.state.maxScore}
+				<br/>	        
 		        {
 		        	Object.assign({}, this.state.player1).dice.map((roll, index) => (
 		          	<DiceImage roll={roll} key={index} />
 		          	))
 		        }
 		        <br/><br/>
-		        Player2: Throw Score: {this.state.player2.throwScore} Turn Score: {this.state.player2.turnScore} Bank Score: {this.state.player2.bankScore}<br/>
+				<h1>Rolling Result: Player2 rolled {this.state.player2.diceLeft} dice(s),
+					this roll's score is <span className="sum">{this.state.player2.throwScore}</span> /{" "}{this.state.player2.diceLeft * 6}
+					</h1>
+				<br/>Turn Score: {this.state.player2.turnScore} 
+				<br/>Total Score: {this.state.player2.bankScore}/{this.state.maxScore}
+				<br/>	
 		        {
 		        	Object.assign({}, this.state.player2).dice.map((roll, index) => (
 		          	<DiceImage roll={roll} key={index} />
@@ -214,8 +234,7 @@ class App extends Component {
 			<br/>
 			
 			
-			<br/>		
-			<Status winner={ this.state.winner }  playerTurn={ this.state.playerTurn } />	
+
   		</div>  
   		 		
         

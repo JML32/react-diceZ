@@ -20,7 +20,7 @@ h1 {
 
 }
 button:focus {outline:0;}
-.button {
+.button{
   background-color: rgba(27, 136, 27, .85);
   border: 2px solid black;
   border-radius: 5px;
@@ -34,6 +34,39 @@ button:focus {outline:0;}
 .button:hover {
   background-color: rgba(27,136,27);
 }
+
+buttonPlayer1:focus {outline:0;}
+.buttonPlayer1 {
+  background-color: rgba(27, 136, 27, .85);
+  border: 2px solid black;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.buttonPlayer1:hover {
+  background-color: rgba(27,136,27);
+}
+
+buttonPlayer2:focus {outline:0;}
+.buttonPlayer2 {
+  background-color: rgba(136, 27, 27, 0.85);
+  border: 2px solid black;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.buttonPlayer2:hover {
+  background-color: rgb(136, 27, 27);
+}
+
 
 .dice-image {
   margin: 10px;
