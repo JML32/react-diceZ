@@ -53,7 +53,7 @@ buttonPlayer1:focus {outline:0;}
 
 buttonPlayer2:focus {outline:0;}
 .buttonPlayer2 {
-  background-color: rgba(136, 27, 27, 0.85);
+  background-color: rgba(255, 136, 0, 0.85);
   border: 2px solid black;
   border-radius: 5px;
   color: white;
@@ -69,11 +69,29 @@ buttonPlayer2:focus {outline:0;}
 
 
 .dice-image {
-  margin: 10px;
-  width: 60px;
+  margin: 8px;
+  width: 50px;
 }
 
 .sum {
   font-size: 20px;
   color: rgb(255, 0, 0);
+}
+
+.countPlayer1 {
+  font-size: 18px;
+  text-decoration: underline;
+  color: rgb(0, 163, 192);
+}
+
+.countPlayer2 {
+  font-size: 18px;
+  text-decoration: underline;
+  color: rgb(243, 158, 1);
+}
+
+.winner {
+  font-size: 50px;
+  color: rgb(255, 0, 0);
+  border: 5px solid rgb(255, 0, 0);
 }

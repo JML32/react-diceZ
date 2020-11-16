@@ -8,7 +8,7 @@ export class Status extends Component {
 	render(){
 		const { winner, playerTurn } = this.props;
 		if(winner){
-			return(<div className="sum"><br/>Winner:  {winner}<br/></div>);
+			return(<div className="winner"><br/>Winner:  {winner}<br/></div>);
 		}else{
 			return(<div><h1><br/> Currrent Player :  {playerTurn}<br/> </h1> </div>);
 		}
