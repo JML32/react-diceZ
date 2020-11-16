@@ -70,9 +70,10 @@ buttonPlayer2:focus {outline:0;}
 
 .dice-image {
   margin: 10px;
-  width: 95px;
+  width: 60px;
 }
 
 .sum {
-  font-size: 48px;
+  font-size: 20px;
+  color: rgb(255, 0, 0);
 }

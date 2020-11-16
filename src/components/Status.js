@@ -10,7 +10,7 @@ export class Status extends Component {
 		if(winner){
 			return(<div className="sum"><br/>Winner:  {winner}<br/></div>);
 		}else{
-			return(<div><br/> Currrent Player :  {playerTurn}<br/> (  All 1s & 6s are removed !!  )<br/><br/> </div>);
+			return(<div><h1><br/> Currrent Player :  {playerTurn}<br/> </h1> </div>);
 		}
 			
 		
