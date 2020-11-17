@@ -11,6 +11,10 @@ h1 {
   font-size: 18px;
   text-decoration: underline;
 }
+h2 {
+  font-size: 14px;
+  color: rgb(66, 132, 190);
+}
 
 .buttons {
   display: flex;
@@ -98,15 +102,23 @@ buttonPlayer2:focus {outline:0;}
 }
 
 .countPlayer1 {
-  font-size: 15px;
+  font-size: 16px;
+  color: rgb(2, 194, 228);
+}
+.countPlayer1b {
+  font-size: 13px;
   text-decoration: underline;
-  color: rgb(0, 163, 192);
+  color: rgb(1, 142, 223);
 }
 
 .countPlayer2 {
-  font-size: 15px;
+  font-size: 16px;
+  color: rgb(248, 162, 3);
+}
+.countPlayer2b {
+  font-size: 13px;
   text-decoration: underline;
-  color: rgb(243, 158, 1);
+  color: rgb(243, 166, 1);
 }
 
 .winner {

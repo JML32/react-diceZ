@@ -265,7 +265,10 @@ class App extends Component {
   	return(
 
   		<div className="App">
-  			<h1>10 Dices Rolling Game ! Who is the first to score {this.state.maxScore} points ?<br/>All 1s & 6s are removed !!<br/>If the throw score is zero, player's turn score is wiped out<br/>Take your own risk!<br/></h1>
+  			<h1>10 Dice Rolling Game ! Who will be the first to score {this.state.maxScore} points ?</h1>
+			  <h2>11s and 6s score zero and are removed before the next throw !<br/>
+			  If the throw score is zero, player's turn score is wiped out.<br/>
+			  Take your own risk!<br/></h2>
 
 			  Total Bank Score of Player 1: <span className="countPlayer1">{this.state.player1.bankScore}</span>/{this.state.maxScore}
 			  <br/>
@@ -303,14 +306,18 @@ class App extends Component {
 		          	<DiceImage roll={roll} key={index} />
 		          	))
 		        }
-				<br/><span className="countPlayer1">
-		            Player1: rolled {this.state.player1.diceLeft} dice(s),
-		            this roll's score is {this.state.player1.throwScore} 
-					(Total throw score of this round: {this.state.player1.turnScore} )</span>
-				<br/><span className="countPlayer2">
-		            Player2: rolled {this.state.player2.diceLeft} dice(s),
-					this roll's score is {this.state.player2.throwScore} 
-					(Total throw score of this round: {this.state.player2.turnScore} )</span>
+				<br/>
+				<span className="countPlayer1">
+		            Player1: rolled {this.state.player1.diceLeft} dice,
+		            this roll's score is {this.state.player1.throwScore} {" "}	</span>
+				<span className="countPlayer1b">
+					( Total turn score of this round: {this.state.player1.turnScore} {" "} )</span>
+				<br/>
+				<span className="countPlayer2">
+		            Player2: rolled {this.state.player2.diceLeft} dice,
+					this roll's score is {this.state.player2.throwScore} {" "}</span>
+				<span className="countPlayer2b">
+					( Total turn score of this round: {this.state.player2.turnScore}  {" "})</span>
 				<br/>         
 	
 		        {
