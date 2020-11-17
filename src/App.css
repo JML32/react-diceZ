@@ -79,13 +79,13 @@ buttonPlayer2:focus {outline:0;}
 }
 
 .countPlayer1 {
-  font-size: 18px;
+  font-size: 15px;
   text-decoration: underline;
   color: rgb(0, 163, 192);
 }
 
 .countPlayer2 {
-  font-size: 18px;
+  font-size: 15px;
   text-decoration: underline;
   color: rgb(243, 158, 1);
 }

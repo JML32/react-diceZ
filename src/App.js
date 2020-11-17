@@ -187,6 +187,7 @@ class App extends Component {
   // rendering the dice image and the result panel
   render() {
 
+
   	//const { winner, playerTurn, player1, player2 } = this.props;
   	console.log("winner:  " + this.state.winner);
 	console.log("playerTurn:  " + this.state.playerTurn);
@@ -197,9 +198,9 @@ class App extends Component {
   		<div className="App">
   			<h1>10 Dices Rolling Game ! Who is the first to score {this.state.maxScore} points ?<br/>( All 1s & 6s are removed !!  )<br/><br/></h1>
 
-			  Total Rolling Score of Player 1: <span className="countPlayer1">{this.state.player1.bankScore}</span>/{this.state.maxScore}
+			  Total Bank Score of Player 1: <span className="countPlayer1">{this.state.player1.bankScore}</span>/{this.state.maxScore}
 			  <br/>
-			  Total Rolling Score of Player 2: <span className="countPlayer2">{this.state.player2.bankScore}</span>/{this.state.maxScore}
+			  Total Bank Score of Player 2: <span className="countPlayer2">{this.state.player2.bankScore}</span>/{this.state.maxScore}
 
 			  <Status winner={ this.state.winner }  playerTurn={ this.state.playerTurn } />
 		        <div className="buttons">          
@@ -227,11 +228,11 @@ class App extends Component {
 				<br/><span className="countPlayer1">
 		            Player1: rolled {this.state.player1.diceLeft} dice(s),
 		            this roll's score is {this.state.player1.throwScore} /{this.state.player1.diceLeft * 6}{"     "}
-					(Total Round Score: {this.state.player1.turnScore} )</span>
+					(Total throw score of this round: {this.state.player1.turnScore} )</span>
 				<br/><span className="countPlayer2">
 		            Player2: rolled {this.state.player2.diceLeft} dice(s),
 					this roll's score is {this.state.player2.throwScore} /{this.state.player2.diceLeft * 6}{"     "}
-					(Total Round Score: {this.state.player2.turnScore} )</span>
+					(Total throw score of this round: {this.state.player2.turnScore} )</span>
 				<br/>         
 	
 		        {
