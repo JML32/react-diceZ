@@ -173,7 +173,7 @@ class App extends Component {
 		  "  , will be added to bank score.\n\n"
 		  + tempPlayerTurn + "'s bank score = " +bankScore+ " + " +turnScore+
 		  "\n\nPlay passes to the next player !");
-  	}*/
+  	  }*/
   	
   };
   
@@ -390,8 +390,9 @@ class App extends Component {
 		                    );
 		            		          
 		            })}
-		        </div></div>
-			    <div class="column4">
+		        </div><br/></div>
+			    
+				<div class="column4">
 				<div className="buttons">
 						{ this.state.showButton && 	
 						<RollButton parentMethod={() => this.stopAndEndTurn(this.state.playerTurn)}/>
