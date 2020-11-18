@@ -50,42 +50,16 @@ class App extends Component {
 	let winnerScore=0;
   	//current turn is player 1, and then player 1 clicked 'End turn'
   	if(tempPlayerTurn === 'Player1'){
-  		  turnScore = this.state.player1.turnScore;
+  		turnScore = this.state.player1.turnScore;
 		  bankScore = this.state.player1.bankScore;
 		  winnerScore =  turnScore + bankScore;
 
 		if( winnerScore >= this.state.maxScore ){  // if there is winner
 			  this.setState({winner: 'Player1'});
-			  window.alert("Winner: Player1's bank score is " +winnerScore+ ".");
 
-			  this.setState(prevState => {
-				let player1 = Object.assign({}, prevState.player1);  // creating copy of state variable player1
-				player1.diceToReduce = 0;       // reset to zero 
-				player1.turnScore = 0;
-				player1.bankScore = 0;  // reset Player 1
-			    player1.dice = [];			  
-			    player1.diceLeft = 0;
-			    player1.throwScore = 0;
-		      return { player1 }; });
-			
-	  		  this.setState(prevState => {
-			    let player2 = Object.assign({}, prevState.player2);  // creating copy of state variable player1
-			    player2.diceToReduce = 0;       // reset Player2
-			    player2.turnScore = 0;				
-				player2.diceLeft = 0;
-				player2.bankScore = 0;
-				player2.throwScore = 0;   
-				player2.dice = [ ];
-			  return { player2 }; });
-			  
-			  this.playerTurn=' ';
-			  this.maxScore= 0;
-			  this.winner= '';
-			  this.newTurn= 'false';
-			  this.totalDice= 0; 
-
-		  }else {
-			  	this.setState(prevState => {
+		  }
+		  
+  		this.setState(prevState => {
 		  		let player1 = Object.assign({}, prevState.player1);  // creating copy of state variable player1
 		  		player1.diceToReduce = 0;       // reset to zero 
 		  		player1.turnScore = 0;
@@ -93,21 +67,20 @@ class App extends Component {
 				player1.dice.splice(0, this.state.totalDice);			  
 				player1.diceLeft = 0;
 				player1.throwScore = 0;
-				return { player1 }; });
+			return { player1 }; });
 			  
-				this.setState(prevState => {
+		this.setState(prevState => {
 				let player2 = Object.assign({}, prevState.player2);  // creating copy of state variable player1
 				player2.diceToReduce = 0;       // reset to zero 
 				player2.turnScore = 0;				
 				player2.diceLeft = 0;
 				player2.throwScore = 0;   
-				return { player2 }; });
+			return { player2 }; });
 						
-				console.log("after set, swap to player 2");
-				this.setState({playerTurn: 'player2'});
-				this.setState({newTurn: "true"});
-		  }
-  	}else {
+		console.log("after set, swap to player 2");
+		this.setState({playerTurn: 'player2'});
+		this.setState({newTurn: "true"});
+  	}else{
   		// current turn is player 2, and then player 2 clicked 'End turn'
   		turnScore = this.state.player2.turnScore;
 		bankScore = this.state.player2.bankScore;
@@ -116,36 +89,34 @@ class App extends Component {
 	
 		if( winnerScore >= this.state.maxScore ){  // if there is winner
 				this.setState({winner: 'Player2'});
-				window.alert("Winner: Player2's bank score is " +winnerScore+ ".");
 			}
-			else{
-			  	this.setState(prevState => {
+
+  		
+  		this.setState(prevState => {
 		  		let player2 = Object.assign({}, prevState.player2);  // creating copy of state variable player1
 		  		player2.diceToReduce = 0;       // reset to zero 
 		  		player2.turnScore = 0;
 		  		player2.bankScore = bankScore + turnScore;  // recalcute the bank score, including last turn score
-				player2.dice.splice(0, this.state.totalDice);
-				player2.throwScore = 0; 
-				player2.diceLeft = 0;
-				return { player2 };  });
+				  player2.dice.splice(0, this.state.totalDice);
+				  player2.throwScore = 0; 
+				  player2.diceLeft = 0;
+			return { player2 };  });
 				  
-				this.setState(prevState => {
+		this.setState(prevState => {
 				let player1 = Object.assign({}, prevState.player1);  // creating copy of state variable player1
 				player1.diceToReduce = 0;       // reset to zero 
 				player1.turnScore = 0;			
 				player1.diceLeft = 0;
 				player1.throwScore = 0;   
-				return { player1 }; });
+			return { player1 }; });
 
-				this.setState({playerTurn: 'Player1'});
-			}
+		this.setState({playerTurn: 'Player1'});
   	}
   	if(bankScore >= this.state.maxScore ){ // winner if reach the max score
-		  this.setState({winner: tempPlayerTurn});
-		  window.alert("Winner: " + tempPlayerTurn + "'s bank score is " +bankScore+ ".");
+  		this.setState({winner: tempPlayerTurn});
   	}else{
   		// reset new turn to true
-	  	  this.setState({newTurn: 'true'});
+	  	this.setState({newTurn: 'true'});
 		  window.alert("End " + tempPlayerTurn + "'s turn, the turn score, " 
 		  +turnScore+ 
 		  "  , will be added to bank score.\n\n"
@@ -200,7 +171,6 @@ class App extends Component {
 
 		if( winnerScore >= this.state.maxScore ){  // if there is winner
 				this.setState({winner: 'Player1'});
-				window.alert("Winner: Player1's bank score is " +winnerScore+ ".");
 				this.setState(prevState => {
 					let player1 = Object.assign({}, prevState.player1);  // creating copy of state variable player1
 					player1.bankScore = winnerScore;        		           
@@ -258,7 +228,6 @@ class App extends Component {
 		
 		  if( winnerScore >= this.state.maxScore ){  // if there is winner
 				  this.setState({winner: 'Player2'});
-				  window.alert("Winner: Player2's bank score is " +winnerScore+ ".");
 				  this.setState(prevState => {
 					  let player2 = Object.assign({}, prevState.player2);  // creating copy of state variable player1
 					  player2.bankScore = winnerScore;        		           
