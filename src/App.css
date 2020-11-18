@@ -70,7 +70,7 @@ buttonStop:focus {outline:0;}
   padding: 10px;
   margin: 0 5px;
   cursor: pointer;
-  width: 180px;
+  width: 150px;
 }
 .buttonStop:hover {
   background-color: rgb(122, 240, 240);
