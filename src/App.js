@@ -3,6 +3,8 @@ import React, { Component } from "react";
 import "./App.css";
 import Status from './components/Status';
 
+import RollButton from './components/RollButton';
+
 import one from "./assets/one.png";
 import two from "./assets/two.png";
 import three from "./assets/three.png";
@@ -37,9 +39,13 @@ class App extends Component {
   	maxScore: 200,
   	winner: '',
 	newTurn: 'false',
-	totalDice: 10 
+	totalDice: 10 ,
+	showButton: true
 	  
   };
+  
+  
+    
 
   
   stopAndEndTurn = tempPlayerTurn => {
@@ -56,8 +62,10 @@ class App extends Component {
 
 		if( winnerScore >= this.state.maxScore ){  // if there is winner
 			  this.setState({winner: 'Player1'});
-			  window.alert("Winner: Player1's bank score is " +winnerScore+ ".");
-
+			  this.setState({showButton: false});
+			  window.alert("Winner: Player1's bank score is " +winnerScore+ ".\nPlease press 'F5' to have new game.");
+			  
+/*
 			  this.setState(prevState => {
 				let player1 = Object.assign({}, prevState.player1);  // creating copy of state variable player1
 				player1.diceToReduce = 0;       // reset to zero 
@@ -83,7 +91,7 @@ class App extends Component {
 			  this.winner= '';
 			  this.newTurn= 'false';
 			  this.totalDice= 0; 
-
+*/
 		  }else {
 			  	this.setState(prevState => {
 		  		let player1 = Object.assign({}, prevState.player1);  // creating copy of state variable player1
@@ -116,7 +124,9 @@ class App extends Component {
 	
 		if( winnerScore >= this.state.maxScore ){  // if there is winner
 				this.setState({winner: 'Player2'});
-				window.alert("Winner: Player2's bank score is " +winnerScore+ ".");
+				this.setState({showButton: false});
+				window.alert("Winner: Player2's bank score is " +winnerScore+ ".\nPlease press 'F5' to have new game.");
+				
 			}
 			else{
 			  	this.setState(prevState => {
@@ -142,6 +152,7 @@ class App extends Component {
   	}
   	if(bankScore >= this.state.maxScore ){ // winner if reach the max score
 		  this.setState({winner: tempPlayerTurn});
+		  this.setState({showButton: false});
 		  window.alert("Winner: " + tempPlayerTurn + "'s bank score is " +bankScore+ ".");
   	}else{
   		// reset new turn to true
@@ -200,12 +211,14 @@ class App extends Component {
 
 		if( winnerScore >= this.state.maxScore ){  // if there is winner
 				this.setState({winner: 'Player1'});
-				window.alert("Winner: Player1's bank score is " +winnerScore+ ".");
+				this.setState({showButton: false});
+				window.alert("Winner: Player1's bank score is " +winnerScore+ ".\nPlease press 'F5' to have new game.");
 				this.setState(prevState => {
 					let player1 = Object.assign({}, prevState.player1);  // creating copy of state variable player1
 					player1.bankScore = winnerScore;        		           
 					return { player1 };
 				});
+
 			}
 
   		for (let i = 0; i < numberOfDice; i++) {
@@ -258,7 +271,8 @@ class App extends Component {
 		
 		  if( winnerScore >= this.state.maxScore ){  // if there is winner
 				  this.setState({winner: 'Player2'});
-				  window.alert("Winner: Player2's bank score is " +winnerScore+ ".");
+				  this.setState({showButton: false});
+				  window.alert("Winner: Player2's bank score is " +winnerScore+ ".\nPlease press 'F5' to have new game.");
 				  this.setState(prevState => {
 					  let player2 = Object.assign({}, prevState.player2);  // creating copy of state variable player1
 					  player2.bankScore = winnerScore;        		           
@@ -316,7 +330,7 @@ class App extends Component {
                 <div class="column2"><h3>10 Dice Rolling Game ! Who will be the first to score {this.state.maxScore} points ?</h3></div>
                 </div>
             </table> 
-			<h2>11s and 6s score zero and are removed before the next throw !<br/>
+			<h2>1s and 6s are removed before the next throw and the throw score is zero.<br/>All remaining dice values are added up to make the throw score.<br/>
 			  If the throw score is zero, player's turn score is wiped out.<br/>
 			  Take your own risk!<br/></h2>
 			    {
@@ -356,10 +370,10 @@ class App extends Component {
                 <div className="buttons">          
 		          {[this.state.totalDice].map(number => { 
 		            return (
-                            <button
+                            <button 
                             key={number}
                             onClick={() => this.diceRoll(number)}
-                            className="buttonPlayer1"
+                            className="buttonPlayer1" hidden={!this.state.showButton}
                             >Start Roll
 					        </button>
 		                    );
@@ -368,11 +382,13 @@ class App extends Component {
 		        </div></div>
 			    <div class="column4">
 				<div className="buttons">
-							
-						<button onClick={() => this.stopAndEndTurn(this.state.playerTurn)} className="buttonStop">
-							 Stop & Bank
-						</button></div></div></div>
+						{ this.state.showButton && 	
+						<RollButton parentMethod={() => this.stopAndEndTurn(this.state.playerTurn)}/>
+						}
+						</div></div></div>
+						
 		        </table> </div> 
+		        
   	);
   }
 }
