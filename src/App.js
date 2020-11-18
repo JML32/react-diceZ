@@ -64,6 +64,11 @@ class App extends Component {
 			  this.setState({winner: 'Player1'});
 			  this.setState({showButton: false});
 			  window.alert("Winner: Player1's bank score is " +winnerScore+ ".\nPlease press 'F5' to have new game.");
+			  this.setState(prevState => {
+				let player1 = Object.assign({}, prevState.player1);  // creating copy of state variable player1
+				player1.bankScore = winnerScore;        		           
+				return { player1 };
+			});
 			  
 /*
 			  this.setState(prevState => {
@@ -126,6 +131,11 @@ class App extends Component {
 				this.setState({winner: 'Player2'});
 				this.setState({showButton: false});
 				window.alert("Winner: Player2's bank score is " +winnerScore+ ".\nPlease press 'F5' to have new game.");
+				this.setState(prevState => {
+					let player2 = Object.assign({}, prevState.player2);  // creating copy of state variable player1
+					player2.bankScore = winnerScore;        		           
+					return { player2 };
+				});
 				
 			}
 			else{
@@ -153,7 +163,7 @@ class App extends Component {
   	if(bankScore >= this.state.maxScore ){ // winner if reach the max score
 		  this.setState({winner: tempPlayerTurn});
 		  this.setState({showButton: false});
-		  window.alert("Winner: " + tempPlayerTurn + "'s bank score is " +bankScore+ ".");
+		  window.alert("Winner: " + tempPlayerTurn + "'s bank score is " +bankScore+ "!!!");
 	  }
 	  /*else{
   		// reset new turn to true

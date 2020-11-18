@@ -13,7 +13,7 @@ class RollButton extends Component {
   
   render() {  
     return <div><button onClick={this.click}  className="buttonStop">
-							 Stop & Bank
+							 Stop & Bank & Next
 						</button></div>;  
   }  
 }  
