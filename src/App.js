@@ -338,7 +338,7 @@ class App extends Component {
             <table class="center">
                 <div class="row">
                 <div class="column1"><img className="dice-image" src="die.png" alt=" " /></div>
-                <div class="column2"><h3>10 Dice Rolling Game ! Who will be the first to score {this.state.maxScore} points ?</h3></div>
+                <div class="column2"><h3>{" "} 10 Dice Rolling Game ! Who will be the first to score {this.state.maxScore} points ?</h3></div>
                 </div>
             </table> 
 			<h2>1s and 6s are removed before the next throw and the throw score is zero.<br/>All remaining dice values are added up to make the throw score.<br/>
