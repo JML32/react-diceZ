@@ -1,6 +1,7 @@
 import React from "react";
 import "../App.css";
 
+
 import one from "../assets/one.png";
 import two from "../assets/two.png";
 import three from "../assets/three.png";
@@ -21,7 +22,7 @@ const Dice = ({ roll }) => {
     return <img className="Dice" src={five} alt="5" />;
   } else if (roll === 6) {
     return <img className="Dice" src={six} alt="6" />;
-  }
+  } 
 };
 
 export default Dice;

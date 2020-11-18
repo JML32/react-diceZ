@@ -7,13 +7,33 @@
   margin: 0 5%;
   margin-top: 50px;
 }
+
+table.center {
+  width:80%; 
+  margin-left:10%; 
+  margin-right:10%;
+}
+
+table.center2 {
+  width:50%; 
+  margin-left:25%; 
+  margin-right:25%;
+}
+
 h1 {
   font-size: 18px;
   text-decoration: underline;
 }
+
 h2 {
   font-size: 14px;
   color: rgb(66, 132, 190);
+}
+
+h3 {
+  text-align: left;
+  font-size: 18px;
+  text-decoration: underline;
 }
 
 .buttons {
@@ -50,6 +70,7 @@ buttonStop:focus {outline:0;}
   padding: 10px;
   margin: 0 5px;
   cursor: pointer;
+  width: 200px;
 }
 .buttonStop:hover {
   background-color: rgb(122, 240, 240);
@@ -67,6 +88,7 @@ buttonPlayer1:focus {outline:0;}
   padding: 10px;
   margin: 0 5px;
   cursor: pointer;
+  width: 200px;
 }
 .buttonPlayer1:hover {
   background-color: rgb(255, 217, 49);
@@ -101,20 +123,32 @@ buttonPlayer2:focus {outline:0;}
   color: rgb(255, 0, 0);
 }
 
+.bankPlayer1 {
+  font-size: 20px;
+  color: rgb(2, 194, 228);
+}
+
 .countPlayer1 {
   font-size: 16px;
   color: rgb(2, 194, 228);
 }
+
 .countPlayer1b {
   font-size: 13px;
   text-decoration: underline;
   color: rgb(1, 142, 223);
 }
 
+.bankPlayer2 {
+  font-size: 20px;
+  color: rgb(248, 162, 3);
+}
+
 .countPlayer2 {
   font-size: 16px;
   color: rgb(248, 162, 3);
 }
+
 .countPlayer2b {
   font-size: 13px;
   text-decoration: underline;
@@ -125,4 +159,44 @@ buttonPlayer2:focus {outline:0;}
   font-size: 50px;
   color: rgb(255, 0, 0);
   border: 5px solid rgb(255, 0, 0);
+}
+
+.column1 {
+  float: left;
+  width: 10%;
+}
+
+.column2 {
+  float: left;
+  width: 90%;
+}
+
+.column3 {
+  float: left;
+  width: 50%;
+}
+
+.column4 {
+  float: right;
+  width: 50%;
+}
+
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.column {
+  float: left;
+}
+
+.left, .right {
+  width: 25%;
+}
+
+.middle {
+  width: 50%;
 }

@@ -11,6 +11,7 @@ import four from "./assets/four.png";
 import five from "./assets/five.png";
 import six from "./assets/six.png";
 
+
 class App extends Component {
   
   
@@ -35,7 +36,7 @@ class App extends Component {
 		diceleft: 10 ,
   		dice: []
   	},
-  	playerTurn: 'player1',
+  	playerTurn: 'Player1',
   	maxScore: 200,
   	winner: '',
 	newTurn: 'false',
@@ -49,7 +50,7 @@ class App extends Component {
   	let turnScore = 0;
   	let bankScore= 0;
   	//current turn is player 1, and then player 1 clicked 'End turn'
-  	if(tempPlayerTurn === 'player1'){
+  	if(tempPlayerTurn === 'Player1'){
   		turnScore = this.state.player1.turnScore;
   		bankScore = this.state.player1.bankScore;
   		console.log("turnScore + bankScore:" + turnScore + bankScore);
@@ -58,8 +59,21 @@ class App extends Component {
 		  		player1.diceToReduce = 0;       // reset to zero 
 		  		player1.turnScore = 0;
 		  		player1.bankScore = bankScore + turnScore;  // recalcute the bank score, including last turn score
-		  		player1.dice.splice(0, this.state.totalDice);
-		  		return { player1 }; });
+				player1.dice.splice(0, this.state.totalDice);			  
+				player1.diceLeft = 0;
+				player1.throwScore = 0;
+			return { player1 }; });
+			  
+		this.setState(prevState => {
+				let player2 = Object.assign({}, prevState.player2);  // creating copy of state variable player1
+				player2.diceToReduce = 0;       // reset to zero 
+				player2.turnScore = 0;
+				//player1.bankScore = bankScore + turnScore;  // recalcute the bank score, including last turn score
+				//player1.dice.splice(0, this.state.totalDice);					
+				player2.diceLeft = 0;
+				player2.throwScore = 0;   
+			return { player2 }; });
+						
 		console.log("after set, swap to player 2");
 		this.setState({playerTurn: 'player2'});
 		this.setState({newTurn: "true"});
@@ -73,17 +87,33 @@ class App extends Component {
 		  		player2.diceToReduce = 0;       // reset to zero 
 		  		player2.turnScore = 0;
 		  		player2.bankScore = bankScore + turnScore;  // recalcute the bank score, including last turn score
-		  		player2.dice.splice(0, this.state.totalDice);
-		  		return { player2 };  });
-		console.log("after set, swap to player 1");
-		this.setState({playerTurn: 'player1'});
+				  player2.dice.splice(0, this.state.totalDice);
+				  player2.throwScore = 0; 
+				  player2.diceLeft = 0;
+			return { player2 };  });
+				  
+		this.setState(prevState => {
+				let player1 = Object.assign({}, prevState.player1);  // creating copy of state variable player1
+				player1.diceToReduce = 0;       // reset to zero 
+				player1.turnScore = 0;
+				//player2.bankScore = bankScore + turnScore;  // recalcute the bank score, including last turn score
+				//player2.dice.splice(0, this.state.totalDice);					
+				player1.diceLeft = 0;
+				player1.throwScore = 0;   
+			return { player1 }; });
+		console.log("after set, swap to player1");
+		this.setState({playerTurn: 'Player1'});
   	}
   	if(bankScore >= this.state.maxScore ){ // winner if reach the max score
   		this.setState({winner: tempPlayerTurn});
   	}else{
   		// reset new turn to true
 	  	this.setState({newTurn: 'true'});
-	  	window.alert("End " + tempPlayerTurn + " 's turn, the turn score will be added to bank score.\nRoll the dice for the next player");
+		  window.alert("End " + tempPlayerTurn + "'s turn, the turn score, " 
+		  +turnScore+ 
+		  "  , will be added to bank score.\n\n"
+		  + tempPlayerTurn + "'s bank score = " +bankScore+ " + " +turnScore+
+		  "\n\nPlay passes to the next player !");
   	}
   	
   };
@@ -113,7 +143,7 @@ class App extends Component {
 		  		console.log("player1.dice..." + player1.dice);		  		           
 		  		return { player1 }; 
 		  	});
-  		}else if (this.state.playerTurn === 'player1'){
+  		}else if (this.state.playerTurn === 'Player1'){
   			// reset the dice, and the turnScore for player2
   			this.setState(prevState => {
 		  		let player2 = Object.assign({}, prevState.player2);  // creating copy of state variable player1
@@ -130,7 +160,7 @@ class App extends Component {
   	}
   	tempPlayerTurn = this.state.playerTurn;
   	console.log("tempPlayerTurn:  " + tempPlayerTurn);
-  	if(tempPlayerTurn === 'player1'){
+  	if(tempPlayerTurn === 'Player1'){
   		console.log("player:  " + tempPlayerTurn);
 		numberOfDice = numberOfDice - this.state.player1.diceToReduce;
 		  console.log("numberOfDice:  " + numberOfDice);
@@ -182,9 +212,17 @@ class App extends Component {
 			//in case throw score is zero, actually 
 			this.setState({playerTurn: 'player2'});
       			console.log("swap to player2 because throw score is zero");
-      			this.setState({newTurn: "true"});  
-      			window.alert("Throw score is zero, " + tempPlayerTurn + "'s turn score is wiped out.\nRoll the dice for the next player.");
-		}/*else if( bankScore >= this.state.maxScore ){  // if there is winner
+				  this.setState({newTurn: "true"});  
+
+				  window.alert("There are no remaining dice ! 1s and 6s score zero.\nSo, throw score is 0!\n\n" 
+				  +tempPlayerTurn+ 
+				  "'s turn score is wiped out. ( Turn score is 0 )\n"
+				  +tempPlayerTurn+ "'s bank score = " +bankScore+ " + " +turnScore+
+				  "\n\nPlay passes to the next player ! ");
+
+
+		
+			}/*else if( bankScore >= this.state.maxScore ){  // if there is winner
 			this.setState({winner: 'Player1'});
 		}else if((this.state.player1.diceToReduce + tempDiceToReduce) === this.state.totalDice){  // or there is NO more dice, change player's turn
 			
@@ -237,16 +275,22 @@ class App extends Component {
 		});
 		if (throwScore === 0){
 			//in case throw score is zero, actually 
-			this.setState({playerTurn: 'player1'});
+			this.setState({playerTurn: 'Player1'});
       			console.log("swap to player1 because throw score is zero");
       			this.setState({newTurn: "true"});  
-      			window.alert("Throw score is zero, " + tempPlayerTurn + "'s turn score is wiped out.\nRoll the dice for the next player.");
+				  //window.alert("Throw score is zero, " + tempPlayerTurn + "'s turn score is wiped out.\n Roll the dice for the next player.");
+				  window.alert("There are no remaining dice ! 1s and 6s score zero.\nSo, throw score is 0!\n\n" 
+				  +tempPlayerTurn+ 
+				  "'s turn score is wiped out. ( Turn score is 0 )\n"
+				  +tempPlayerTurn+ "'s bank score = " +bankScore+ " + " +turnScore+
+				  "\n\nPlay passes to the next player ! ");
+				  
 		}
       		/*if( bankScore >= this.state.maxScore ){ //if there is winner
 			this.setState({winner: 'Player2'});
 		}else if((this.state.player2.diceToReduce + tempDiceToReduce) === this.state.totalDice){  //or there is NO more dice
 			
-      			this.setState({playerTurn: 'player1'});
+      			this.setState({playerTurn: 'Player1'});
       			console.log("swap to player1:  ");
       			this.setState({newTurn: "true"});       
       		}*/
@@ -263,49 +307,27 @@ class App extends Component {
 
   	
   	return(
-
   		<div className="App">
-  			<h1>10 Dice Rolling Game ! Who will be the first to score {this.state.maxScore} points ?</h1>
-			  <h2>11s and 6s score zero and are removed before the next throw !<br/>
+		<table class="center">
+			<div class="row">
+			<div class="column1"><img className="dice-image" src="die.png" alt=" " /></div>
+			<div class="column2"><h3>10 Dice Rolling Game ! Who will be the first to score {this.state.maxScore} points ?</h3></div>
+			</div>
+		</table> 
+			<h2>11s and 6s score zero and are removed before the next throw !<br/>
 			  If the throw score is zero, player's turn score is wiped out.<br/>
 			  Take your own risk!<br/></h2>
-
-			  Total Bank Score of Player 1: <span className="countPlayer1">{this.state.player1.bankScore}</span>/{this.state.maxScore}
-			  <br/>
-			  Total Bank Score of Player 2: <span className="countPlayer2">{this.state.player2.bankScore}</span>/{this.state.maxScore}
-
-			  <Status winner={ this.state.winner }  playerTurn={ this.state.playerTurn } />
-		        <div className="buttons">          
-		          {[this.state.totalDice].map(number => { 
-		            //number === 1 ? "die" : "dice";
-		            return (
-						
-		              <button
-		                key={number}
-		                onClick={() => this.diceRoll(number)}
-		                className="buttonPlayer1"
-		              >
-		                {this.state.playerTurn} : Click to Roll 
-		              </button>
-		            );
-		            		          
-		          })}
-       
-		        </div>	
-		        <div className="buttons">
-		        	
-		        		<button onClick={() => this.stopAndEndTurn(this.state.playerTurn)}
-			                className="buttonStop"
-			              >
-			                {this.state.playerTurn} : End This Turn & Next Player
-			              </button>
-		        	
-		        </div>
-				{
+			  {
 		        	Object.assign({}, this.state.player1).dice.map((roll, index) => (
 		          	<DiceImage roll={roll} key={index} />
 		          	))
 		        }
+					
+					{
+		        	Object.assign({}, this.state.player2).dice.map((roll, index) => (
+		          	<DiceImage roll={roll} key={index} />
+		          	))
+			}
 				<br/>
 				<span className="countPlayer1">
 		            Player1: rolled {this.state.player1.diceLeft} dice,
@@ -319,12 +341,64 @@ class App extends Component {
 				<span className="countPlayer2b">
 					( Total turn score of this round: {this.state.player2.turnScore}  {" "})</span>
 				<br/>         
+
+
+			  Total Bank Score of Player 1: <span className="bankPlayer1">{this.state.player1.bankScore}</span>/{this.state.maxScore}
+			  <br/>
+			  Total Bank Score of Player 2: <span className="bankPlayer2">{this.state.player2.bankScore}</span>/{this.state.maxScore}
+
+			  <Status winner={ this.state.winner }  playerTurn={ this.state.playerTurn } />
 	
-		        {
-		        	Object.assign({}, this.state.player2).dice.map((roll, index) => (
-		          	<DiceImage roll={roll} key={index} />
-		          	))
-			}
+
+
+				<table class="center2">
+				<div class="row">
+			<div class="column3">
+			 <div className="buttons">          
+		          {[this.state.totalDice].map(number => { 
+		            //number === 1 ? "die" : "dice";
+		            return (
+						
+		              //<button
+		              //  key={number}
+		              //  onClick={() => this.diceRoll(number)}
+		              //  className="buttonPlayer1"
+		              //>
+		              //  {this.state.playerTurn} : Click to Roll 
+		              //</button>
+
+					<button
+					key={number}
+					onClick={() => this.diceRoll(number)}
+					className="buttonPlayer1"
+					>Start Roll
+					</button>
+		            );
+		            		          
+		          })}
+       
+		        </div>
+				</div>
+
+			<div class="column4">
+				<div className="buttons">
+							
+						<button onClick={() => this.stopAndEndTurn(this.state.playerTurn)}
+							className="buttonStop"
+						>
+							 Stop & Bank
+						</button>
+
+
+					
+
+
+				</div>
+				
+				</div>
+			</div>
+		</table> 
+	
 			
 			
 			
@@ -353,7 +427,7 @@ const DiceImage = ({ roll }) => {
     return <img className="dice-image" src={five} alt="5" />;
   } else if (roll === 6) {
     return <img className="dice-image" src={six} alt="6" />;
-  }
+  } 
 };
 
 export default App;
