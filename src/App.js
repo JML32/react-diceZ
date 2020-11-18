@@ -154,7 +154,8 @@ class App extends Component {
 		  this.setState({winner: tempPlayerTurn});
 		  this.setState({showButton: false});
 		  window.alert("Winner: " + tempPlayerTurn + "'s bank score is " +bankScore+ ".");
-  	}else{
+	  }
+	  /*else{
   		// reset new turn to true
 	  	  this.setState({newTurn: 'true'});
 		  window.alert("End " + tempPlayerTurn + "'s turn, the turn score, " 
@@ -162,7 +163,7 @@ class App extends Component {
 		  "  , will be added to bank score.\n\n"
 		  + tempPlayerTurn + "'s bank score = " +bankScore+ " + " +turnScore+
 		  "\n\nPlay passes to the next player !");
-  	}
+  	}*/
   	
   };
   
